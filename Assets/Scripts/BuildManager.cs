@@ -36,9 +36,15 @@ public class BuildManager : MonoBehaviour {
 		GameObject seedProjectileClone = Instantiate (Resources.Load ("Prefabs/Seed Projectile"), 
 		                                              _motherTreeSeedShooter.transform.position, _motherTreeSeedShooter.transform.rotation) as GameObject;
 		seedProjectileClone.GetComponent<SeedProjectile>().Target(_nodePos);
-
-
 	}
+	
+	public void SpawnGrowRoot()
+	{
+		GameObject _root = Instantiate ( Resources.Load ("Prefabs/GrowRoot"),
+		                                _motherTreeSeedShooter.transform.position, Quaternion.identity) as GameObject;
+		_root.GetComponent<RootScript>().Shoot(_nodePos);
+	}
+	
 	public void SpawnGrass()
 	{
 		//Instantiate Seed Target at hit

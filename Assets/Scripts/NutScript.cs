@@ -3,38 +3,47 @@ using System.Collections;
 
 public class NutScript : MonoBehaviour {
 
-	public GameObject target;
+	private GameObject currentTarget;
+	private Vector3 origin;
+	private TrailRenderer trail;
 
 	// Use this for initialization
 	void Start () {
-	
-		if (target)
-		{
-		this.transform.LookAt(target.transform.position);
+		trail = this.GetComponent<TrailRenderer>();
+		origin = this.transform.position;
+	}
 
 
+	public void Shoot(GameObject target){
+		currentTarget = target;
+		trail.enabled = true;
+
+		Vector3 targetPos = target.transform.position;
+		this.transform.LookAt(targetPos);
+		
 		iTween.MoveTo( this.gameObject,iTween.Hash(
-			iT.MoveTo.position, target.transform.position,
-			iT.MoveTo.easetype, iTween.EaseType.linear,
-			iT.MoveTo.time, .1f,
-			iT.MoveTo.oncomplete, "DestroySelf"
-			));
-		}
-	}
-
-	private void OnCollisionEnter(Collision col)
-	{
-		if (col.gameObject == target)
-		{
-
-			target.GetComponent<AxeLoggerScript>().health -= 2f;
-		}
+			iT.MoveTo.position, targetPos, 
+			iT.MoveTo.easetype, iTween.EaseType.linear, 
+			iT.MoveTo.time, .3f,
+			iT.MoveTo.oncomplete, "SendDamage"
+			)); 
 	}
 
 
-	private void DestroySelf()
+	private void SendDamage()
 	{
-		Destroy( this.gameObject);
+		if (currentTarget)
+		currentTarget.GetComponent<AxeLoggerScript>().TakeDamage(2f);
+		
+		Reset();
+
+	}
+	
+	private void Reset()
+	{
+		currentTarget = null;
+		trail.enabled = false;
+		this.transform.position = origin;
 	}
 
 }

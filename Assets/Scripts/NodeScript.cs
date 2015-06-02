@@ -70,11 +70,10 @@ public class NodeScript : MonoBehaviour, IPointerClickHandler,IPointerEnterHandl
 				switch (NodeStatus)
 				{
 				case 1: 
-
-					_currentObject.GetComponent<GrowAtStart>().StopGrowAnim();
-					Destroy(_currentObject.gameObject);
+					Invoke("DestroyExistingSprout", .7f);
 					
-					_BuildManager.SpawnBranchFist();
+					_BuildManager.SpawnGrowRoot();
+					_BuildManager.Invoke("SpawnBranchFist", .7f);
 					
 					//Switch node status to BranchFist
 					NodeStatus= 21;
@@ -86,10 +85,10 @@ public class NodeScript : MonoBehaviour, IPointerClickHandler,IPointerEnterHandl
 				switch (NodeStatus)
 				{
 				case 1: 
-					_currentObject.GetComponent<GrowAtStart>().StopGrowAnim();
-					Destroy(_currentObject.gameObject);
+					Invoke("DestroyExistingSprout", .7f);
 					
-					_BuildManager.SpawnRootWhip();
+					_BuildManager.SpawnGrowRoot();
+					_BuildManager.Invoke("SpawnRootWhip", .7f);
 					
 					//Switch node status to BranchFist
 					NodeStatus= 22;
@@ -101,16 +100,18 @@ public class NodeScript : MonoBehaviour, IPointerClickHandler,IPointerEnterHandl
 				switch (NodeStatus)
 				{
 				case 1: 
-					_currentObject.GetComponent<GrowAtStart>().StopGrowAnim();
-					Destroy(_currentObject.gameObject);
-					
-					_BuildManager.SpawnNutPelter();
+					Invoke("DestroyExistingSprout", .7f);
+									
+					_BuildManager.SpawnGrowRoot();
+					_BuildManager.Invoke("SpawnNutPelter",.7f);
 					
 					//Switch node status to BranchFist
 					NodeStatus= 31;
 					break;
 				}
 				break; //end NutPelter
+
+
 
 			case "Vine":
 				switch (NodeStatus)
@@ -194,6 +195,11 @@ public class NodeScript : MonoBehaviour, IPointerClickHandler,IPointerEnterHandl
 	//	_myObject = _BuildManager.GetBabyTreeObject();
 	}
 	
+	private void DestroyExistingSprout(){
+		_currentObject.GetComponent<GrowAtStart>().StopGrowAnim();
+		Destroy(_currentObject.gameObject);
+	}
+	
 	private void ClickAnimation()
 	{
 		iTween.StopByName("nodeHighlight");
@@ -214,6 +220,7 @@ public class NodeScript : MonoBehaviour, IPointerClickHandler,IPointerEnterHandl
 			"position",new Vector3(this.transform.position.x , .15f , this.transform.position.z)
 			));
 	}
+	
 	
 
 

@@ -11,7 +11,7 @@ public class RootScript : MonoBehaviour {
 	//Init for maths
 	private float _moveTotalDistance; 
 
-	private GameObject _moveTarget;
+	private Vector3 _moveTarget;
 
 
 
@@ -25,13 +25,13 @@ public class RootScript : MonoBehaviour {
 
 
 	//Initialise from PlayerController
-	public void getVariables(GameObject babyTree)
+	public void Shoot(Vector3 targetPos)
 	{
-		_moveTarget = babyTree;
+		_moveTarget = targetPos;
 
-		transform.LookAt(new Vector3(babyTree.transform.position.x,0,babyTree.transform.position.z));
+		transform.LookAt(new Vector3(targetPos.x,0,targetPos.z));
 
-		_moveTotalDistance = Vector3.Distance(babyTree.transform.position , transform.position);
+		_moveTotalDistance = Vector3.Distance(targetPos , transform.position);
 
 
 
@@ -54,7 +54,7 @@ public class RootScript : MonoBehaviour {
 
 		//Move to moveTarget (babyTree)
 		iTween.MoveTo( this.gameObject,iTween.Hash(
-			iT.MoveTo.position, _moveTarget.transform.position,
+			iT.MoveTo.position, _moveTarget,
 			iT.MoveTo.easetype, iTween.EaseType.easeOutSine,
 			iT.MoveTo.time, .8f,
 			iT.MoveTo.oncomplete, "CompleteRootMove"
@@ -83,12 +83,12 @@ public class RootScript : MonoBehaviour {
 
 	private void CompleteRootMove()
 	{
-		if (_moveTarget != null)
-		{
-			PlayerController.ImproveBabyTree(_moveTarget);
-		}
+	//	if (_moveTarget != null)
+	//	{
+	//		PlayerController.ImproveBabyTree(_moveTarget);
+	//	}
 
-		Destroy(_moveTarget.gameObject); 
+	//	Destroy(_moveTarget.gameObject); 
 		Destroy(this.gameObject);
 	}
 

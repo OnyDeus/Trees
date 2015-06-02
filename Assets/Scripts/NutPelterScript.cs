@@ -3,44 +3,58 @@ using System.Collections;
 
 public class NutPelterScript : MonoBehaviour {
 
-	public float attackPower = 4f;
-	public float attackRange = 1.5f;
-	public float attackDelay = 1f;
+	#region Object settings
+		public float attackPower = 4f;
+		public float attackRange = 1.5f;
+		public float attackDelay = 1f;
+	#endregion
 	
-	private float _delayTimer;
+	#region functional variables
+		private float timeSinceLastShot;
+		private int currentNut = 1;
+		private GameObject nut1;
+		private GameObject nut2;
+	#endregion
 	
-	// Use this for initialization
+	
 	void Start () {
-		//	DoCheck();
-		
-		
+		nut1 = Instantiate(Resources.Load("Prefabs/NutBullet"),this.transform.position, Quaternion.identity) as GameObject;
+		nut2 = Instantiate(Resources.Load("Prefabs/NutBullet"),this.transform.position, Quaternion.identity) as GameObject;
 	}
 	
-	// Update is called once per frame
+	#region Update
 	void Update () {
 		
-		
-		
-		if (FindClosestEnemy() !=null)
+		if (timeSinceLastShot > attackDelay)
 		{
-			if (Vector3.Distance(this.transform.position, FindClosestEnemy().transform.position) <= attackRange 
-			    && _delayTimer > attackDelay)
-			{
-				GameObject _nut = Instantiate(Resources.Load("Prefabs/NutBullet"),this.transform.position, Quaternion.identity) as GameObject;
-				_nut.GetComponent<NutScript>().target = FindClosestEnemy();
-				//FindClosestEnemy().GetComponent<AxeLoggerScript>().health -= attackPower;
-				//Instantiate(Resources.Load("Particles/HitParticle"),FindClosestEnemy().transform.position, Quaternion.identity);
-				_delayTimer = 0f;
-			}
+		    GameObject enemy = FindClosestEnemy();
 			
+			if (enemy !=null && Vector3.Distance(this.transform.position, enemy.transform.position) <= attackRange)
+			{	
+				ShootAtEnemy(enemy);
+			}
 		}
-		
-		_delayTimer += Time.deltaTime;
-	}//end update
+		timeSinceLastShot += Time.deltaTime;
+	}
+	#endregion
+	
+	
+
+	public void ShootAtEnemy(GameObject _enemy)
+	{
+		if( currentNut == 1)
+			nut1.GetComponent<NutScript>().Shoot(_enemy);
+		else if ( currentNut == 2)
+			nut2.GetComponent<NutScript>().Shoot(_enemy);	
+			
+			
+			
+		timeSinceLastShot = 0f;	
+	}
 
 
 
-
+	#region FindClosesetEnemy 
 	GameObject FindClosestEnemy()
 	{
 		GameObject [] gos;
@@ -57,7 +71,8 @@ public class NutPelterScript : MonoBehaviour {
 			}
 		}
 		return closest;
-	}//end FindClosestEnemy
+	}
+	#endregion 
 
 
 }//end class

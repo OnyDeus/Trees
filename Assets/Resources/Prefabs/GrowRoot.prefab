@@ -31,7 +31,7 @@ GameObject:
   - 23: {fileID: 2353044}
   - 114: {fileID: 11444102}
   m_Layer: 0
-  m_Name: Root
+  m_Name: GrowRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

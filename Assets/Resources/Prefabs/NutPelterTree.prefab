@@ -834,8 +834,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPower: 1
-  attackRange: 4
-  attackDelay: .300000012
+  attackRange: 6
+  attackDelay: .5
 --- !u!114 &11478354
 MonoBehaviour:
   m_ObjectHideFlags: 1
