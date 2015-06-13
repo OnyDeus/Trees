@@ -3,19 +3,25 @@ using System.Collections;
 
 public class LoggerSpawnerScript : MonoBehaviour {
 
+	public int totalLoggers = 3;
+	public float spawnSpeed = 8;
+
 	// Use this for initialization
 	void Start () {
-		SpawnLogger();
+		Invoke("SpawnLogger" , spawnSpeed);
 		
 		
 	}
 	
 	// Update is called once per frame
 	void SpawnLogger() {
-	
-		Instantiate(Resources.Load("Prefabs/AxeLogger"), transform.position, Quaternion.identity);
 		
-		Invoke("SpawnLogger" , 3f);
+		if (totalLoggers >= 0){
 	
+			Instantiate(Resources.Load("Prefabs/AxeLogger"), transform.position, Quaternion.identity);
+			
+			Invoke("SpawnLogger" , spawnSpeed);
+			totalLoggers --;
+		}
 	}
 }

@@ -11,9 +11,12 @@ GameObject:
   - 33: {fileID: 3327488}
   - 114: {fileID: 11429374}
   - 114: {fileID: 11410214}
+  - 114: {fileID: 11496090}
+  - 114: {fileID: 11464280}
+  - 114: {fileID: 11418118}
   m_Layer: 0
   m_Name: Baby Tree
-  m_TagString: Baby Tree
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -171,6 +174,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   growFromValue: {x: .100000001, y: .100000001, z: .100000001}
+--- !u!114 &11418118
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73d2bb94ea3f6c14b807a40193f95501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myTile: {fileID: 0}
 --- !u!114 &11429374
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -182,6 +197,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a49fa384112f5f542b3bd7909387de08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11464280
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b63bb66c4d6804d41bc470d5cfae67b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+--- !u!114 &11496090
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 114918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03ebe560470eeef4ab01fd6b87e7e422, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOpen: 1
+  attackingLogger: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

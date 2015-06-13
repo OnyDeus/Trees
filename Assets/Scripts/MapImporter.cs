@@ -27,7 +27,7 @@ public class MapImporter : MonoBehaviour {
 	}
 	
 	void BuildMap () {
-		Debug.Log("Building Map...");
+//		Debug.Log("Building Map...");
 		_ground = GameObject.Find("Ground").transform;
 		
 		for(int i = 0; i < tiles.GetLength(0); i++) {
@@ -36,17 +36,17 @@ public class MapImporter : MonoBehaviour {
 					GameObject _motherTree = Instantiate(Resources.Load("Prefabs/MotherTree"),new Vector3( j - mapWidth, 0, mapHeight - i),Quaternion.identity) as GameObject;
 					_motherTree.name = "MotherTree";
 
-					GameObject _node = Instantiate(Resources.Load("Prefabs/Node(Locked)"),new Vector3( j - mapWidth , 0, mapHeight - i),Quaternion.LookRotation(Vector3.up)) as GameObject;
+					GameObject _node = Instantiate(Resources.Load("Prefabs/Tile(Locked)"),new Vector3( j - mapWidth , 0, mapHeight - i),Quaternion.LookRotation(Vector3.up)) as GameObject;
 					_node.transform.parent = _ground;
 					
 				} else
 				if(tiles[i,j] == 1) {
-					GameObject _node = Instantiate(Resources.Load("Prefabs/Node"),new Vector3( j- mapWidth, 0, mapHeight - i),Quaternion.LookRotation(Vector3.up)) as GameObject;
+					GameObject _node = Instantiate(Resources.Load("Prefabs/Tile"),new Vector3( j- mapWidth, 0, mapHeight - i),Quaternion.LookRotation(Vector3.up)) as GameObject;
 					_node.transform.parent = _ground;
 					
 				} else
 				if(tiles[i,j] == 2) {
-					GameObject _node = Instantiate(Resources.Load("Prefabs/Node(Locked)"),new Vector3( j -mapWidth, 0, mapHeight - i),Quaternion.LookRotation(Vector3.up)) as GameObject;
+					GameObject _node = Instantiate(Resources.Load("Prefabs/Tile(Locked)"),new Vector3( j -mapWidth, 0, mapHeight - i),Quaternion.LookRotation(Vector3.up)) as GameObject;
 					_node.transform.parent = _ground;
 
 				} else
@@ -62,17 +62,17 @@ public class MapImporter : MonoBehaviour {
 				}
 			}
 		}
-		Debug.Log("Building Completed!");
+		Debug.Log("Map Building Completed!");
 	}
 	
 	private int[,] Load(string filePath) {
 		try {
-			Debug.Log("Loading File...");
+//			Debug.Log("Loading File...");
 			using(StreamReader sr = new StreamReader(filePath) ) {
 				string input = sr.ReadToEnd();
 				string[] lines = input.Split(new[] { '\r', '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
 				int[,] tiles = new int[lines.Length, mapWidth];
-				Debug.Log("Parsing...");
+//				Debug.Log("Parsing...");
 				for(int i = 0; i < lines.Length; i++) {
 					string st = lines[i];
 					string[] nums = st.Split(new[] {',' });
@@ -88,7 +88,7 @@ public class MapImporter : MonoBehaviour {
 						}
 					}
 				}
-				Debug.Log("Parsing Completed!");
+//				Debug.Log("Parsing Completed!");
 				return tiles;
 			}
 		}

@@ -5,8 +5,6 @@ public class RootScript : MonoBehaviour {
 
 	//Public Settings
 	public float secondsToReachTarget = 1f;
-
-	private PlayerController PlayerController;
 	
 	//Init for maths
 	private float _moveTotalDistance; 
@@ -16,12 +14,7 @@ public class RootScript : MonoBehaviour {
 
 
 
-	void Awake () {
-
-		//Init
-		PlayerController = GameObject.Find("GameManager").GetComponent<PlayerController>();
-
-	}
+	void Awake () {	}
 
 
 	//Initialise from PlayerController
@@ -83,12 +76,7 @@ public class RootScript : MonoBehaviour {
 
 	private void CompleteRootMove()
 	{
-	//	if (_moveTarget != null)
-	//	{
-	//		PlayerController.ImproveBabyTree(_moveTarget);
-	//	}
 
-	//	Destroy(_moveTarget.gameObject); 
 		Destroy(this.gameObject);
 	}
 

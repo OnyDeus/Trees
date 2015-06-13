@@ -6457,15 +6457,18 @@ public class iTween : MonoBehaviour{
 	/// The <see cref="System.String"/> name of iTween you would like to stop.
 	/// </param>	
 	public static void StopByName(GameObject target, string name){
-		Component[] tweens = target.GetComponents<iTween>();
-		foreach (iTween item in tweens){
-			/*string targetType = item.type+item.method;
-			targetType=targetType.Substring(0,type.Length);
-			if(targetType.ToLower() == type.ToLower()){
-				item.Dispose();
-			}*/
-			if(item._name == name){
-				item.Dispose();
+		if (target != null){
+			Component[] tweens = target.GetComponents<iTween>();
+			foreach (iTween item in tweens){
+				/*string targetType = item.type+item.method;
+				targetType=targetType.Substring(0,type.Length);
+				if(targetType.ToLower() == type.ToLower()){
+					item.Dispose();
+				}*/
+
+				if(item._name == name){  
+					item.Dispose();
+				}
 			}
 		}
 	}

@@ -214,9 +214,12 @@ GameObject:
   - 4: {fileID: 470338}
   - 114: {fileID: 11473266}
   - 114: {fileID: 11478354}
+  - 114: {fileID: 11497896}
+  - 114: {fileID: 11433566}
+  - 114: {fileID: 11408582}
   m_Layer: 0
   m_Name: NutPelterTree
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -822,6 +825,31 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 149678}
   m_Mesh: {fileID: 4300006, guid: 8f4fbbc7883e4064cb7653f7b60f9dc5, type: 3}
+--- !u!114 &11408582
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 187286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b63bb66c4d6804d41bc470d5cfae67b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+  deathAnimTime: .330000013
+--- !u!114 &11433566
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 187286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73d2bb94ea3f6c14b807a40193f95501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myTile: {fileID: 0}
 --- !u!114 &11473266
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -833,7 +861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff55ef00158f32b47948a710caad79b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackPower: 1
+  attackPower: .300000012
   attackRange: 6
   attackDelay: .5
 --- !u!114 &11478354
@@ -848,6 +876,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   growFromValue: {x: .300000012, y: .300000012, z: .300000012}
+--- !u!114 &11497896
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 187286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03ebe560470eeef4ab01fd6b87e7e422, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOpen: 1
+  logger: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -10,7 +10,7 @@ public class BuildModeController : MonoBehaviour {
 	}
 
 	public void SetSapling(){
-		_PlayerController.buildMode = "Sapling";}
+		_PlayerController.buildMode = "Sprout";}
 	
 	public void SetBranchFistTree(){
 		_PlayerController.buildMode = "BranchFist";}

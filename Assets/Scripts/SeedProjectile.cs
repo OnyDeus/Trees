@@ -9,7 +9,7 @@ public class SeedProjectile : MonoBehaviour {
 
 
 
-	public float secondsToReachTarget = 1f;
+	public float secondsToReachTarget = 2f;
 
 
 	private GameObject seedChild;
@@ -24,7 +24,7 @@ public class SeedProjectile : MonoBehaviour {
 		randomRollSpeed = Random.Range(-maxSeedRollSpeed, maxSeedRollSpeed);
 		seedChild = this.transform.GetChild(0).gameObject;
 
-		Invoke("DestroySelf", 1.5f); 
+		Invoke("DestroySelf", .75f); 
 
 	}
 	

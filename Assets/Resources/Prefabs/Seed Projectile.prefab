@@ -8,7 +8,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 413916}
-  - 54: {fileID: 5457804}
   - 136: {fileID: 13667460}
   - 114: {fileID: 11491482}
   m_Layer: 0
@@ -153,21 +152,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 191618}
   m_Mesh: {fileID: 4300004, guid: c4c90473e3d44be45b800247b7bbb775, type: 3}
---- !u!54 &5457804
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 102430}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: .0500000007
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!95 &9500644
 Animator:
   serializedVersion: 3
@@ -196,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cfc4dee874f2ae4aba6d7296159fda3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondsToReachTarget: 1
+  secondsToReachTarget: 2
   maxSeedRollSpeed: 1000
 --- !u!136 &13667460
 CapsuleCollider:
@@ -206,7 +190,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 102430}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: .5
   m_Height: 1
   m_Direction: 1
