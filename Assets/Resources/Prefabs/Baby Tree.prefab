@@ -208,7 +208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b63bb66c4d6804d41bc470d5cfae67b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  health: 2
+  deathAnimTime: .330000013
 --- !u!114 &11496090
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -221,7 +222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpen: 1
-  attackingLogger: {fileID: 0}
+  logger: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -10,6 +10,10 @@ TagManager:
   - Enemy
   - Tree
   - Node
+  - DynamicWater
+  - DynamicWaterObstruction
+  - DynamicWaterPlaneCollider
+  - DynamicWaterObstructionInverted
   layers:
   - Default
   - TransparentFX

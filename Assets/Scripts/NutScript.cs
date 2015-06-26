@@ -3,6 +3,8 @@ using System.Collections;
 
 public class NutScript : MonoBehaviour {
 
+	public int damage = 1;
+
 	private GameObject currentTarget;
 	private Vector3 origin;
 	private TrailRenderer trail;
@@ -24,7 +26,7 @@ public class NutScript : MonoBehaviour {
 		iTween.MoveTo( this.gameObject,iTween.Hash(
 			iT.MoveTo.position, targetPos, 
 			iT.MoveTo.easetype, iTween.EaseType.linear, 
-			iT.MoveTo.time, .3f,
+			iT.MoveTo.time, .1f,
 			iT.MoveTo.oncomplete, "SendDamage"
 			)); 
 	}
@@ -33,7 +35,7 @@ public class NutScript : MonoBehaviour {
 	private void SendDamage()
 	{
 		if (currentTarget)
-		currentTarget.GetComponent<AxeLoggerScript>().TakeDamage(2f);
+		currentTarget.GetComponent<AxeLoggerScript>().TakeDamage(damage);
 		
 		Reset();
 

@@ -6,7 +6,7 @@ public class TileScript : MonoBehaviour, IPointerClickHandler,IPointerEnterHandl
 
 	private PlayerController PlayerController;
 	private BuildManager BuildManager;
-
+	
 	private GameObject myGrass;
 	private GameObject myNavObstacle;
 
@@ -20,6 +20,21 @@ public class TileScript : MonoBehaviour, IPointerClickHandler,IPointerEnterHandl
 		GameObject GM = GameObject.Find("GameManager");
 		PlayerController = GM.GetComponent<PlayerController>();
 		BuildManager = GM.GetComponent<BuildManager>();
+		
+		#region Set Random Texture
+				
+		Material[] grassMaterials = Resources.LoadAll<Material>("Materials/Grasses") as Material[] ;
+		Debug.Log(grassMaterials);
+		Material randMat = grassMaterials[Random.Range(0,grassMaterials.Length)];
+		Material[] myMaterials = this.GetComponent<Renderer>().sharedMaterials;
+		
+		myMaterials[1] = randMat;
+
+		this.GetComponent<Renderer>().sharedMaterials = myMaterials; 
+ 
+		#endregion
+		
+		
 	}
 
 	void Update () {	}

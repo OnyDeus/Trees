@@ -28,22 +28,31 @@ public class PlayerController: MonoBehaviour{
  *  Vine
  *  Rock
 */
+
+	//text
 	private Text _buildModeText;
+	private Text _waterValue;
 
 
 	public float seedFireRate = .5f;
 	private float _seedNextFire = 0f;
 
+	public float currentWater;
 
 
 	// Use this for initialization
 	void Start () {
 		buildMode = "Sprout"; 
 	
+		//text
 		_buildModeText = GameObject.Find("BuildModeText").GetComponent<Text>() as Text;
-
-	//	camera = GameObject.Find("Main Camera").GetComponent<Camera>();
+		_waterValue = GameObject.Find("WaterValue").GetComponent<Text>() as Text;
+		
+		//	camera = GameObject.Find("Main Camera").GetComponent<Camera>();
 		_motherTreeSeedShooter = GameObject.Find("MotherTreeSeedShooter");
+		
+		//values
+		currentWater = 3;
 
 	}
 
@@ -54,6 +63,7 @@ public class PlayerController: MonoBehaviour{
 	// Update is called once per frame
 	void Update () {
 
+		_waterValue.text = currentWater.ToString("f1");
 		_buildModeText.text = buildMode.ToString();
 
 	}//End Update

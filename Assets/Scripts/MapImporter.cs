@@ -11,11 +11,7 @@ public class MapImporter : MonoBehaviour {
 	public int mapWidth;
 	public int mapHeight;
 	
-	public GameObject Floor;
-	public GameObject Bricks;
-	public GameObject Wall;
-	public GameObject WallWithTorch;
-	public GameObject Roof;
+	
 	private Transform _ground; 
 
 	
@@ -32,6 +28,7 @@ public class MapImporter : MonoBehaviour {
 		
 		for(int i = 0; i < tiles.GetLength(0); i++) {
 			for(int j = 0; j < tiles.GetLength(1); j++) {
+				
 				if(tiles[i,j] == 0) {
 					GameObject _motherTree = Instantiate(Resources.Load("Prefabs/MotherTree"),new Vector3( j - mapWidth, 0, mapHeight - i),Quaternion.identity) as GameObject;
 					_motherTree.name = "MotherTree";
@@ -51,7 +48,8 @@ public class MapImporter : MonoBehaviour {
 
 				} else
 				if(tiles[i,j] == 3) {
-
+					GameObject _node = Instantiate(Resources.Load("Prefabs/Tile(Water)"),new Vector3( j -mapWidth, 0, mapHeight - i),Quaternion.identity) as GameObject;
+					_node.transform.parent = _ground;
 				} else
 				if(tiles[i,j] == 4) {
 

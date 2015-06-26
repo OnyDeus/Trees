@@ -9,16 +9,21 @@ public class AxeLoggerScript : MonoBehaviour {
 	public float visionRange = 5;
 	public float attackRange = 1.2f;
 	public float attackDamage = 1f;
-	public float attackSpeed = .5f;
+	public float attackSpeed = 2f;
+	public float waterValue = 1f;
 	private float attackDelayTimer;
 	
 	private AIPath aI;
 	private Transform navAnchor;
 	public float navRepathRate = 1f;
 	private float navRepathTimer = 0f;
+	private Vector3 lastPos;
 
 	private GameObject motherTree;
 	public GameObject myTarget;
+	
+	
+	private Animator anim;
 
 
 	/*public enum FSMState
@@ -36,7 +41,7 @@ public class AxeLoggerScript : MonoBehaviour {
 	void Start () {
 		aI = GetComponent<AIPath>();
 		
-	
+		anim = GetComponentInChildren<Animator>();
 		
 		GameObject navAnchorObj = Instantiate(Resources.Load("Prefabs/NavAnchor"),this.transform.position,Quaternion.identity) as GameObject;
 		navAnchor = navAnchorObj.transform;
@@ -44,6 +49,9 @@ public class AxeLoggerScript : MonoBehaviour {
 		aI.target = navAnchor;
 		
 		motherTree = GameObject.Find("MotherTree");
+		
+		
+		lastPos = this.transform.position;
 		Logic(); //gets myTarget
 	}
 	
@@ -58,33 +66,52 @@ public class AxeLoggerScript : MonoBehaviour {
 		{			
 			Logic(); //gets myTarget
 	
-			
+				
 			navAnchor.position = myTarget.transform.position; 
+			navAnchor.transform.LookAt(this.transform.position);
+			navAnchor.transform.Translate(Vector3.forward * .5f);
 			
 		}
 		
 
 		
-		
+		// 
 		if(myTarget)
 		{
 			if (Vector3.Distance(this.transform.position, myTarget.transform.position) <= attackRange
 			   		&& attackDelayTimer > attackSpeed)
 			{
-				Vector3 dirToTarget = myTarget.transform.position - this.transform.position;
+
 
 				
-				myTarget.GetComponent<Health>().TakeDamage(attackDamage); 
+
 				attackDelayTimer = 0;
 				
+				anim.ResetTrigger("IsAttacking");
+				anim.SetTrigger("IsAttacking");
 				
-				Instantiate (Resources.Load("Particles/SplinterParticle"),myTarget.transform.position,Quaternion.LookRotation(new Vector3(dirToTarget.x,0,dirToTarget.z)));
+				//anim.Play(Attack, layer, 0.0f); //??????????????????
+			} else
+			{
+			//	anim.Set("IsAttacking", false);
 			}
 		} 
 		if (myTarget == null) 
 		{
-			Debug.Log(this.gameObject.name + " has error, no Target"); 
+			Debug.LogError(this.gameObject.name + " has error, no Target"); 
 		}
+		
+		
+		//Test locations for move animation 
+		if(lastPos == null || lastPos != this.transform.position )
+		{
+			anim.SetBool("IsMoving", true);
+			lastPos = this.transform.position;
+		} else
+		{
+			anim.SetBool("IsMoving", false);
+		}
+		
 		
 	} //end Update
 	
@@ -106,6 +133,13 @@ public class AxeLoggerScript : MonoBehaviour {
 
 	}
 	
+	public void DoDamage(){
+		Vector3 dirToTarget = myTarget.transform.position - this.transform.position;
+		myTarget.GetComponent<Health>().TakeDamage(attackDamage); 
+		Instantiate (Resources.Load("Particles/SplinterParticle"),myTarget.transform.position,Quaternion.LookRotation(new Vector3(dirToTarget.x ,0,dirToTarget.z)));
+		
+	}
+	
 	public void TakeDamage(float damage)
 	{
 		health -= damage;
@@ -113,10 +147,11 @@ public class AxeLoggerScript : MonoBehaviour {
 		if (health < 0)
 		{
 			Destroy(this.gameObject);
+			GameObject.Find("GameManager").GetComponent<PlayerController>().currentWater += 1;
 		}
 	}
 	
-	#region Find Closeset Untargeted Enemy 
+	#region Find Closeset Untargeted Enemy 		//TODO: Check If queried Tree is closer to MoTree than this logger
 	GameObject FindClosestUntargeted()
 	{
 		GameObject [] plrTrees;

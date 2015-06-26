@@ -5,13 +5,24 @@ public class LoggerSpawnerScript : MonoBehaviour {
 
 	public int totalLoggers = 3;
 	public float spawnSpeed = 8;
+	public float timeToBuild = 10;
 
 	// Use this for initialization
 	void Start () {
-		Invoke("SpawnLogger" , spawnSpeed);
+		Invoke("SpawnLogger" , timeToBuild);
 		
 		
 	}
+	
+	void Update ()
+	{
+		if (timeToBuild >= 0)
+		{
+			Debug.Log("Incoming enemies");
+		}
+	
+	}
+	
 	
 	// Update is called once per frame
 	void SpawnLogger() {
